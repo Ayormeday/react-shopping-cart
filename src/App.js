@@ -8,17 +8,18 @@ import CartContext from "./contexts/CartContext";
 import Navigation from "./components/Navigation";
 import Products from "./components/Products";
 import ShoppingCart from "./components/ShoppingCart";
+import uuid from 'uuid';
 
 function App() {
   const [products] = useState(data);
   const [cart, setCart] = useState([]);
 
   const addItem = item => {
-    setCart([...cart, item]);
+    setCart([...cart, {...item, cartid:uuid()}]);
   };
   const removeItem = id => {
 		setCart(prevCart => {
-			return prevCart.filter(el => el.id != id )
+			return prevCart.filter(el => el.cartid != id )
 		});
 	 
   }
