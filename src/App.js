@@ -8,18 +8,17 @@ import CartContext from "./contexts/CartContext";
 import Navigation from "./components/Navigation";
 import Products from "./components/Products";
 import ShoppingCart from "./components/ShoppingCart";
-import uuid from 'uuid';
 
 function App() {
   const [products] = useState(data);
   const [cart, setCart] = useState([]);
 
   const addItem = item => {
-    setCart([...cart, {...item, cartid:uuid()}]);
+    setCart([...cart, {...item, dateAdded: Date.now()}]);
   };
-  const removeItem = id => {
+  const removeItem = date => {
 		setCart(prevCart => {
-			return prevCart.filter(el => el.cartid != id )
+			return prevCart.filter(el => el.dateAdded != date )
 		});
 	 
   }
